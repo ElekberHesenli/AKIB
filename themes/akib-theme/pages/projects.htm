@@ -1,0 +1,129 @@
+title = "Layihələr"
+url = "/projects/:page?"
+layout = "default"
+
+[collection projects]
+handle = "blog.project"
+pageNumber = "{{ :page }}"
+perPage = 12
+sortColumn = "created_at"
+sortDirection = "desc"
+conditions = "is_enabled = true"
+==
+
+{% set page = this.param.page %}
+{% if not page or page matches '/\D/' %}
+    {% set page = 1 %}
+{% endif %}
+{% set perPage = 12 %}
+
+{% set totalCount = projects.get().count() %}
+{% set lastPage = (totalCount / perPage)|round(0, 'ceil') %}
+
+{% if page > lastPage and lastPage > 0 %}
+    {% do redirect('projects') %}
+{% endif %}
+
+{% set allProjects = projects.get()|sort((a, b) => b.created_at <=> a.created_at) %}
+{% set records = allProjects|slice((page - 1) * perPage, perPage) %}
+{% set imgUrls = {
+    banner: 'storage/app/media/2440x1578.png',
+} %}
+
+<!-- OG Meta Tags -->
+<meta property="og:title" content="Layihələr - Akib" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ this.url }}" />
+<meta property="og:image" content="{{ projects|first.featured_image|media }}" />
+
+<!-- Start Page Title -->
+<div
+    class="page-title-area shadow dark bg-fixed text-center text-light"
+    style="background-image: url('{{ imgUrls.banner }}');"
+>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1>{{ 'Layihələr'|_ }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<!-- Start Our Services -->
+<div class="blog-area services-area icon-only default-padding bottom-less">
+    <div class="container">
+        <div class="services-items">
+            <div class="row g-4">
+                {% if records|length %} {% for project in records %}
+                <div class="col-md-4 col-sm-6">
+                    <div class="item shadow-sm p-5 bg-white rounded h-100">
+                        <div class="info">
+                            {% if project.featured_image %}
+                            <img
+                                src="{{ project.featured_image|media }}"
+                                alt="{{ project.title }}"
+                                style="width: 60px; margin-bottom: 50px"
+                            />
+                            {% endif %}
+                            <h4>{{ project.title }}</h4>
+                            <p>{{ project.description }}</p>
+                            <a
+                                href="{{ 'projects-detail'|page({ projectSlug: project.slug }) }}"
+                                >{{ 'Ətraflı'|_ }} <i class="ti-arrow-right"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %} {% else %}
+                <div class="col-md-12">
+                    <div class="alert alert-info">
+                        {{ 'Heç bir layihə tapılmadı.'|_ }}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if lastPage > 1 %}
+        <div class="row">
+            <div class="col-md-12 pagi-area text-center">
+                <nav aria-label="navigation">
+                    <ul class="pagination">
+                        {% if page > 1 %}
+                        <li class="page-item">
+                            <a
+                                class="page-link"
+                                href="{{ 'projects'|page({ page: page - 1 }) }}"
+                            >
+                                «
+                            </a>
+                        </li>
+                        {% endif %} {% for i in 1..lastPage %}
+                        <li class="page-item {{ page == i ? 'active' : '' }}">
+                            <a
+                                class="page-link"
+                                href="{{ 'projects'|page({ page: i }) }}"
+                            >
+                                {{ i }}
+                            </a>
+                        </li>
+                        {% endfor %} {% if page < lastPage %}
+                        <li class="page-item">
+                            <a
+                                class="page-link"
+                                href="{{ 'projects'|page({ page: page + 1 }) }}"
+                            >
+                                »
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<!-- End Our Services -->

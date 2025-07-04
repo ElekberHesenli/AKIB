@@ -1,0 +1,65 @@
+uuid: edcd102e-0525-4e4d-b07e-633ae6c18db6
+handle: blog.post
+type: entry
+name: Post
+drafts: true
+
+customMessages:
+    buttonCreate: New Post
+
+primaryNavigation:
+    label: Blog
+    icon: octo-icon-file
+    iconSvg: modules/tailor/assets/images/blog-icon.svg
+    order: 95
+
+navigation:
+    label: Posts
+    icon: octo-icon-pencil
+    order: 100
+
+groups:
+    general:
+        name: General
+        fields:
+            title:
+                tab: Details
+                label: Title
+                type: text
+                span: full
+
+            slug:
+                tab: Details
+                label: Slug
+                type: slug
+                span: full
+                maxLength: 255
+                required: true
+                unique: true
+                source: title
+
+            excerpt:
+                tab: Details
+                label: Excerpt
+                type: textarea
+                span: full
+
+            featured_image:
+                tab: Details
+                label: Featured Image
+                type: mediafinder
+                mode: image
+                span: full
+
+    content:
+        name: Content
+        fields:
+            content:
+                tab: Content
+                label: Content
+                type: richeditor
+                span: full
+
+            _blog_content_mixin:
+                type: mixin
+                source: Fields\BlogContent

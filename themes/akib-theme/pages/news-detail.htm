@@ -1,0 +1,20 @@
+title = "Xəbər Detal"
+url = "/news-detail/:postSlug"
+layout = "default"
+
+[tailorEntry detailPost]
+handle = "blog.post"
+recordSlug = "{{ :postSlug }}"
+==
+
+{% set post = detailPost.getRecord() %}
+
+Slug: {{ this.param.postSlug }} <br>
+Component Found: {{ post ? 'yes' : 'no' }} <br>
+
+{% if post %}
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.content }}</p>
+{% else %}
+  <p>{{ 'Heç bir xəbər tapılmadı.'|_ }}</p>
+{% endif %}

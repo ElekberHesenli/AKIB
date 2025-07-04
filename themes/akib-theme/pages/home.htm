@@ -1,0 +1,325 @@
+title = "Ana Səhifə"
+url = "/"
+layout = "default"
+
+[collection sliders]
+handle = "slider.slide"
+sortColumn = "published_at"
+sortDirection = "desc"
+
+[collection projects]
+handle = "blog.project"
+sortColumn = "created_at"
+sortDirection = "desc"
+conditions = "is_enabled = true"
+
+[collection posts]
+handle = "blog.post"
+sortColumn = "created_at"
+sortDirection = "desc"
+conditions = "is_enabled = true"
+
+[viewBag]
+localeUrl[en] = "/en"
+==
+{% set allProjects = projects.get()|sort((a, b) => b.created_at <=> a.created_at) %}
+{% set records = allProjects|slice(0, 3) %}
+
+{% set allPosts = posts.get()|sort((a, b) => b.created_at <=> a.created_at) %}
+{% set blogRecords = allPosts|slice(0, 3) %}
+
+{% set imgUrls = {
+    thumb1: 'storage/app/media/800x800.png',
+    thumb2: 'storage/app/media/800x800.png',
+} %}
+<body>
+    <!-- Start Banner 
+    ============================================= -->
+    <div class="banner-area">
+        <div id="bootcarousel" class="carousel text-dark inc-top-heading slide animate_text" data-ride="carousel">
+            <div class="carousel-inner carousel-zoom">
+                {% for slider in sliders %}
+                    <div class="item {{ loop.first ? 'active' : '' }} bg-cover" style="background-image: url('{{ slider.photo|media }}');">
+                        <div class="box-table">
+                            <div class="box-cell">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="content">
+                                                <h2 data-animation="animated slideInDown">{{ slider.title|raw }}</h2>
+                                                <p data-animation="animated slideInUp">{{ slider.description }}</p>
+                                                {% if slider.button_link %}
+                                                    <a data-animation="animated slideInUp" class="btn btn-theme effect btn-md" href="{{ slider.button_link }}">
+                                                        {{ 'Ətraflı Öyrən'|_ }}
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    
+            <a class="left carousel-control" href="#bootcarousel" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#bootcarousel" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <!-- Start Our About
+    ============================================= -->
+    <div class="about-area fixed-features default-padding-bottom">
+        <div class="container">
+            <div class="row">
+                <!-- Start About -->
+
+                <!-- Start Our Features -->
+                <div class="col-md-12 text-center about-items">
+                    <div class="features-items">
+                        <h1> {{ 'Nə üçün biz'|_ }}</h1>
+                        <div class="row">
+                            <!-- Single Item -->
+                            <div class="col-md-3 col-sm-6 single-item">
+                                <div class="item">
+                                    <a>
+                                        <i class="flaticon-rocket"></i>
+                                        <h5>{{ 'İlk İş Prosesi'|_ }}</h5>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End Single Item -->
+                            <!-- Single Item -->
+                            <div class="col-md-3 col-sm-6 single-item">
+                                <div class="item">
+                                    <a>
+                                        <i class="flaticon-meeting"></i>
+                                        <h5>{{ 'İT Nəzarət Həlləri'|_ }}</h5>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Single Item -->
+                            <!-- End Single Item -->
+                            <div class="col-md-3 col-sm-6 single-item">
+                                <div class="item">
+                                    <a>
+                                        <i class="flaticon-contract"></i>
+                                        <h5>{{ 'Audit və Təminat'|_ }}</h5>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End Single Item -->
+                            <!-- Single Item -->
+                            <div class="col-md-3 col-sm-6 single-item">
+                                <div class="item">
+                                    <a>
+                                        <i class="flaticon-support-2"></i>
+                                        <h5>{{ '24/7 Canlı Dəstək'|_ }}</h5>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End Single Item -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End Our Features -->
+
+            </div>
+
+            <!-- Start Our About ============================================= -->
+            <div class="about-area default-padding">
+                <div class="container">
+                    <div class="row">
+                    <!-- Start About Content -->
+                        <div class="about-content content-left">
+                            <div class="col-md-6 info">
+                                <h2>{{ 'Biz faydaları daha yüksək etmək barədə məlumatlıyıq'|_ }}</h2>
+                                <p>
+                                    {{ 'Demesne uzaq ürəkli fərz sərmayəni həyəcanlı gördük. Çox asılı olaraq tərəfindən çatdırılır. Yenə də ondan daha pis zarafat yoxdur. Yataq bir səhər yeməyi gün sual asılı olaraq yerinə yetirildi. Hansı oğlan olursa olsun, onun səyi uzanırdı. Ecstatic yaraşıqlı rəsmləri izlədi, tamamilə xanım bir, lakin daha ağır basdı. Qəbul etmənin cəsarətsizliyi diqqətəlayiq şəkildə dəvətdir.'|_ }}
+                                </p>
+                                <ul>
+                                    <li><i class="icon_check"></i> {{ 'Kiçik və böyük biznes üçün həll'|_ }}</li>
+                                    <li><i class="icon_check"></i> {{ 'Bank hesabınıza kredit məbləğini asanlaşdırın'|_ }}</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 thumb">
+                                <img src="{{ imgUrls.thumb1 }}" alt="Thumb">
+                                <img src="{{ imgUrls.thumb1}}" alt="Thumb">
+                            </div>
+                        </div>
+                    <!-- End About -->
+                    </div>
+                </div>
+            </div>
+        <!-- End Our About -->
+        </div>
+    </div>
+    <!-- End Our About -->
+
+    <!-- Start Our Services
+============================================= -->
+<div class="services-area text-center carousel-shadow">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="site-heading text-center">
+                    <h2 style="color: red;">{{ 'Layihələr'|_ }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blog-area services-area icon-only bottom-less">
+        <div class="container">
+            <div class="services-items">
+                <div class="row g-4">
+                    {% if records|length %} {% for project in records %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="item shadow-sm p-5 bg-white rounded h-100">
+                            <div class="info">
+                                {% if project.featured_image %}
+                                <img
+                                    src="{{ project.featured_image|media }}"
+                                    alt="{{ project.title }}"
+                                    style="width: 60px; margin-bottom: 50px"
+                                />
+                                {% endif %}
+                                <h4>{{ project.title }}</h4>
+                                <p>{{ project.description }}</p>
+                                <a
+                                    href="{{ 'projects-detail'|page({ projectSlug: project.slug }) }}"
+                                    >{{ 'Ətraflı '|_ }}<i class="ti-arrow-right"></i
+                                ></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %} {% else %}
+                    <div class="col-md-12">
+                        <div class="alert alert-info">
+                            {{ 'Heç bir layihə tapılmadı.'|_ }}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Our Services -->
+    <!-- Star Blog Area
+    ============================================= -->
+    <div class="blog-area bg-white default-padding bottom-less">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="site-heading text-center">
+                        <h2>{{ 'Xəbərlər'|_ }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="blog-items">
+                    {% for post in blogRecords %}
+                        <div class="col-md-4 single-item">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{ 'news-detail'|page({ postSlug: post.slug }) }}">
+                                        {% if post.featured_image %}
+                                            <img src="{{ post.featured_image|media }}" alt="{{ post.title }}">
+                                        {% else %}
+                                            <img src="{{ imgUrls.thumb }}" alt="{{ post.title }}">
+                                        {% endif %}
+                                        <div class="post-date">
+                                            {{ post.published_at ? post.published_at|date('d M') : post.created_at|date('d M') }}
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="info">
+                                    <div class="tags">
+                                        <p>
+                                            {{ post.published_at ? post.published_at|date('d.m.Y') : post.created_at|date('d.m.Y') }}
+                                        </p>
+                                    </div>
+                                    <h4>
+                                        <a href="{{ 'news-detail'|page({ postSlug: post.slug }) }}">
+                                            {{ post.title }}
+                                        </a>
+                                    </h4>
+                                    <p>
+                                        {% if post.excerpt %}
+                                            {{ post.excerpt }}
+                                        {% else %}
+                                            {{ post.content|striptags|slice(0, 150) ~ '...' }}
+                                        {% endif %}
+                                    </p>
+                                    <a class="btn btn-theme border btn-sm" href="{{ 'news-detail'|page({ postSlug: post.slug }) }}">
+                                        {{ 'Ətraflı'|_ }}
+                                        <i class="fas fa-angle-double-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Blog Area -->
+
+     <!-- Start Our Services
+    ============================================= -->
+    <div class="services-area text-center carousel-shadow default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="site-heading text-center">
+                        <h2>{{ 'Tərəfdaşlar'|_ }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-medium">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="services-items services-carousel owl-carousel owl-theme">
+                        <!-- Single Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <i class="flaticon-analysis"></i>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                        <!-- Single Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <i class="flaticon-meeting"></i>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                        <!-- Single Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <i class="flaticon-money-1"></i>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                        <!-- Single Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <i class="flaticon-result"></i>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Our Services -->
+</body>
+</html>

@@ -1,0 +1,186 @@
+url = "/aboutus"
+title = "Haqqımızda"
+layout = "default"
+
+[viewBag]
+localeUrl[en] = "/aboutus"
+==
+{% set imgUrls = {
+    thumb1: 'storage/app/media/800x800.png',
+    thumb2: 'storage/app/media/800x800.png',
+    team1: 'storage/app/media/800x850.png',
+    team2: 'storage/app/media/800x850.png',
+    team3: 'storage/app/media/800x850.png',
+    team4: 'storage/app/media/800x850.png',
+    banner: 'storage/app/media/2440x1578.png',
+} %}
+<!-- Start Page Title -->
+<div
+    class="page-title-area shadow dark bg-fixed text-center text-light"
+    style="background-image: url('{{ imgUrls.banner }}');"
+>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1>{{ 'Haqqımızda'|_ }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+<!-- Start Our About ============================================= -->
+<div class="about-area default-padding">
+    <div class="container">
+        <div class="row">
+        <!-- Start About Content -->
+            <div class="about-content content-left">
+                <div class="col-md-6 info">
+                    <h2>{{ 'Biz faydaları daha yüksək etmək barədə məlumatlıyıq'|_ }}</h2>
+                    <p>
+                        {{ 'Demesne uzaq ürəkli fərz sərmayəni həyəcanlı gördük. Çox asılı olaraq tərəfindən çatdırılır. Yenə də ondan daha pis zarafat yoxdur. Yataq bir səhər yeməyi gün sual asılı olaraq yerinə yetirildi. Hansı oğlan olursa olsun, onun səyi uzanırdı. Ecstatic yaraşıqlı rəsmləri izlədi, tamamilə xanım bir, lakin daha ağır basdı. Qəbul etmənin cəsarətsizliyi diqqətəlayiq şəkildə dəvətdir.'|_ }}
+                    </p>
+                    <ul>
+                        <li><i class="icon_check"></i> {{ 'Kiçik və böyük biznes üçün həll'|_ }}</li>
+                        <li><i class="icon_check"></i> {{ 'Bank hesabınıza kredit məbləğini asanlaşdırın'|_ }}</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 thumb">
+                    <img src="{{ imgUrls.thumb1 }}" alt="Thumb">
+                    <img src="{{ imgUrls.thumb2 }}" alt="Thumb">
+                </div>
+            </div>
+        <!-- End About -->
+        </div>
+    </div>
+</div>
+<!-- End Our About -->
+
+<!-- Star Team Area
+============================================= -->
+<div class="team-area default-padding bottom-less">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="site-heading text-center">
+                    <h2>{{ 'Komandamızı Tanıyın '|_ }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="team-items text-center">
+            <div class="row">
+                <!-- Single Item -->
+                <div class="single-item col-md-3 col-sm-6">
+                    <div class="item">
+                        <div class="thumb">
+                            <img src="{{ imgUrls.team1 }}" alt="Thumb">
+                        </div>
+                        <div class="info">
+                            <div class="inner">
+                                <h4>Mike Dooley</h4>
+                                <span>Chief Executive</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Single Item -->
+                <!-- Single Item -->
+                <div class="single-item col-md-3 col-sm-6">
+                    <div class="item">
+                        <div class="thumb">
+                            <img src="{{ imgUrls.team2 }}" alt="Thumb">
+                        </div>
+                        <div class="info">
+                            <div class="inner">
+                                <h4>Chris Wensel</h4>
+                                <span>Vice President</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Single Item -->
+                <!-- Single Item -->
+                <div class="single-item col-md-3 col-sm-6">
+                    <div class="item">
+                        <div class="thumb">
+                            <img src="{{ imgUrls.team3 }}" alt="Thumb">
+                        </div>
+                        <div class="info">
+                            <div class="inner">
+                                <h4>Richard Muldoone</h4>
+                                <span>Legal Officer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Single Item -->
+                <!-- Single Item -->
+                <div class="single-item col-md-3 col-sm-6">
+                    <div class="item">
+                        <div class="thumb">
+                            <img src="{{ imgUrls.team4 }}" alt="Thumb">
+                        </div>
+                        <div class="info">
+                            <div class="inner">
+                                <h4>John Martin</h4>
+                                <span>Finance Head</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Single Item -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Team Area -->
+
+<!-- Start Our Services
+    ============================================= -->
+    <div class="services-area text-center carousel-shadow default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="site-heading text-center">
+                        <h2>{{ 'Tərəfdaşlar'|_ }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-medium">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="services-items services-carousel owl-carousel owl-theme">
+                        <!-- Single Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <i class="flaticon-analysis"></i>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                        <!-- Single Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <i class="flaticon-meeting"></i>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                        <!-- Single Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <i class="flaticon-money-1"></i>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                        <!-- Single Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <i class="flaticon-result"></i>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Our Services -->

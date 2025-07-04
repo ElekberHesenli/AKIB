@@ -1,0 +1,195 @@
+<!-- Nav -->
+{% placeholder headerBefore %}
+{% set imgUrls = {
+logo: 'storage/app/media/logo.png',
+} %}
+
+<!-- Start Header Top 
+    ============================================= -->
+<div class="top-bar-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 logo">
+                <a href="{{ 'home'|page }}">
+                    <img src="{{ imgUrls.logo }}" class="logo" alt="Logo">
+                </a>
+            </div>
+            <div class="col-md-9 address-info text-right">
+                <div class="info box">
+                    <ul>
+                        <li>
+                            <div class="icon">
+                                <i class="flaticon-email"></i>
+                            </div>
+                            <div class="info">
+                                <span>Email</span> Info@gmail.com
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">
+                                <i class="flaticon-call-center"></i>
+                            </div>
+                            <div class="info">
+                                <span>{{ 'Telefon'|_ }}</span> +123 456 7890
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Header Top -->
+
+<!-- Header 
+    ============================================= -->
+<header id="home">
+
+    <!-- Start Navigation -->
+    <nav class="navbar navbar-default attr-border active-border logo-less small-pad navbar-sticky bootsnav">
+
+        <!-- Start Top Search -->
+        <div class="top-search">
+            <div class="container">
+                <div class="input-group">
+
+                </div>
+            </div>
+        </div>
+        <!-- End Top Search -->
+
+        <div class="container">
+
+            <!-- Start Atribute Navigation -->
+            <div class="attr-nav">
+            </div>
+            <!-- End Atribute Navigation -->
+
+            <!-- Start Header Navigation -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="{{ 'home'|page }}">
+                    <img src="{{ imgUrls.logo }}" class="logo" alt="Logo">
+                </a>
+            </div>
+            <!-- End Header Navigation -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="nav navbar-nav navbar-left" data-in="#" data-out="#">
+                    <li class="{{ this.page.baseFileName == 'home' ? 'active' : '' }}">
+                        <a href="{{ 'home'|page }}"
+                            class="dropdown-toggle {{ this.page.baseFileName == 'home' ? 'active' : '' }}"
+                            data-toggle="dropdown">{{ 'Ana Səhifə'|_ }}</a>
+                    </li>
+                    <li class="{{ this.page.baseFileName == 'aboutus' ? 'active' : '' }}">
+                        <a href="{{ 'aboutus'|page }}"
+                            class="{{ this.page.baseFileName == 'aboutus' ? 'active' : '' }}">{{ 'Haqqımızda'|_ }}</a>
+                    </li>
+                    <li class="{{ this.page.baseFileName == 'projects' ? 'active' : '' }}">
+                        <a href="{{ 'projects'|page }}"
+                            class="dropdown-toggle {{ this.page.baseFileName == 'projects' ? 'active' : '' }}"
+                            data-toggle="dropdown">{{ 'Layihələr'|_ }}</a>
+                    </li>
+                    <li class="{{ this.page.baseFileName == 'news' ? 'active' : '' }}">
+                        <a href="{{ 'news'|page }}"
+                            class="dropdown-toggle {{ this.page.baseFileName == 'news' ? 'active' : '' }}"
+                            data-toggle="dropdown">{{ 'Xəbərlər və Elanlar'|_ }}</a>
+                    </li>
+                    <li class="{{ this.page.baseFileName == 'register' ? 'active' : '' }}">
+                        <a href="{{ 'register'|page }}"
+                            class="{{ this.page.baseFileName == 'register' ? 'active' : '' }}">{{ 'Üzv Ol'|_ }}</a>
+                    </li>
+                    <li class="{{ this.page.baseFileName == 'contact' ? 'active' : '' }}">
+                        <a href="{{ 'contact'|page }}"
+                            class="{{ this.page.baseFileName == 'contact' ? 'active' : '' }}">{{ 'Əlaqə'|_ }}</a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+        <form id="language-switcher">
+            <select onchange="changeLanguage(this.value)">
+                <option value="/az" {{ this.locale=='az' ? 'selected' : '' }}>AZ</option>
+                <option value="/en" {{ this.locale=='en' ? 'selected' : '' }}>EN</option>
+            </select>
+        </form>
+        <!-- Start Side Menu -->
+        <div class="side">
+            <a href="#" class="close-side"><i class="fas fa-times"></i></a>
+            <div class="widget">
+                <img src="{{ imgUrls.logo }}" alt="Logo">
+                <p>
+                    {{ 'Gələn kompas kimi hazırlayın. Ağlabatan xüsusi mənim bu simpatiya. Ölçüsü artıq asanlıqla əl
+                    yemək necə. İstəmədiyi anda ruh düşkünlüyü ilə başqa yerdən ayrılır. Ürək böyük görünə bilər pul
+                    kisəsi bir neçə kor deməkdir.'|_ }}
+                </p>
+            </div>
+            <div class="widget contact address">
+                <div>
+                    <ul>
+                        <li>
+                            <div class="content">
+                                <p>{{ 'Məkan'|_ }}</p><strong>California, TX 70240</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <p>{{ 'EMAIL'|_ }}</p><strong>support@validtheme.com</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <p>{{ 'TEL'|_ }}</p><strong>+44-20-7328-4499</strong>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget contact newsletter">
+                <h4 class="title">{{ 'Abonə Ol!'|_ }}</h4>
+                <form action="#">
+                    <div class="input-group stylish-input-group">
+                        <input type="email" placeholder="Enter your e-mail" class="form-control" name="email">
+                        <span class="input-group-addon">
+                            <button type="submit">
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="widget social">
+                <ul class="link">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- End Side Menu -->
+
+    </nav>
+    <!-- End Navigation -->
+
+</header>
+<!-- End Header -->
+
+<script>
+    function changeLanguage(locale) {
+        // Saytın əsas yolu
+        const basePath = '/Akib-October-Cms';
+        
+        // Hazırkı yol, əvvəlki dili təmizləyirik
+        const cleanPath = window.location.pathname
+            .replace(basePath, '')         // baza yolunu çıxarır
+            .replace(/^\/(az|en)/, '');    // prefixi təmizləyir
+
+        // Yeni dilə yönləndiririk
+        window.location.href = `${basePath}${locale}${cleanPath}`;
+    }
+</script>
+
+{% placeholder headerAfter %}

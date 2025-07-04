@@ -1,0 +1,20 @@
+name: Akib Theme
+code: akib-theme
+description: Custom theme based on Figma template
+author: Ələkbər Bəy
+homepage: ''
+
+form:
+    fields:
+        facebook:
+            label: Facebook Link
+            type: text
+        twitter:
+            label: Twitter Link
+            type: text
+        instagram:
+            label: Instagram Link
+            type: text
+        linkedin:
+            label: LinkedIn Link
+            type: text

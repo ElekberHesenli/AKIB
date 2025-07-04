@@ -1,0 +1,142 @@
+title = "Xəbərlər"
+url = "/news/:page?"
+layout = "default"
+
+[collection posts]
+handle = "blog.post"
+pageNumber = "{{ :page }}"
+perPage = 5
+sortColumn = "created_at"
+sortDirection = "desc"
+conditions = "is_enabled = true"
+==
+{% set page = this.param.page %}
+{% if not page or page matches '/\D/' %}
+    {% set page = 1 %}
+{% endif %}
+{% set perPage = 5 %}
+
+{% set totalCount = posts.get().count() %}
+{% set lastPage = (totalCount / perPage)|round(0, 'ceil') %}
+
+{% if page > lastPage and lastPage > 0 %}
+    {% do redirect('news') %}
+{% endif %}
+
+{% set allRecords = posts.get()|sort((a, b) => b.created_at <=> a.created_at) %}
+{% set records = allRecords|slice((page - 1) * perPage, perPage) %}
+{% set imgUrls = {
+    banner: 'storage/app/media/2440x1578.png',
+} %}
+<!-- OG Meta Tags -->
+<meta property="og:title" content="Xəbərlər - Akib" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ this.url }}" />
+<meta property="og:image" content="{{ posts|first.featured_image|media }}" />
+
+<!-- Start Page Title -->
+<div
+    class="page-title-area shadow dark bg-fixed text-center text-light"
+    style="background-image: url('{{ imgUrls.banner }}');"
+>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1>{{ 'Blog'|_ }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<!-- Start Blog -->
+<div class="blog-area full-blog blog-standard full-blog default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="blog-items">
+                <div class="blog-content col-md-10 col-md-offset-1">
+                    <div class="blog-item-box">
+                        {% if records|length %}
+                            {% for post in records %}
+                                <div class="single-item">
+                                    <div class="item">
+                                        {% if post.featured_image %}
+                                            <div class="thumb">
+                                                <a href="{{ 'news-detail'|page({ postSlug: post.slug }) }}">
+                                                    <img src="{{ post.featured_image|media }}" alt="{{ post.title }}" />
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                        <div class="info">
+                                            <div class="tags">
+                                                <p>
+                                                    {{ 'Tarix:'|_ }}
+                                                    {{ post.published_at ? post.published_at|date('d.m.Y') : post.created_at|date('d.m.Y') }}
+                                                </p>
+                                            </div>
+                                            <h4>
+                                                <a href="{{ 'news-detail'|page({ postSlug: post.slug }) }}">
+                                                    {{ post.title }}
+                                                </a>
+                                            </h4>
+                                            <p>
+                                                {% if post.excerpt %}
+                                                    {{ post.excerpt }}
+                                                {% else %}
+                                                    {{ post.content|striptags|slice(0, 200) }}...
+                                                {% endif %}
+                                            </p>
+                                            <a class="btn btn-theme border btn-sm" href="{{ 'news-detail'|page({ postSlug: post.slug }) }}">
+                                                {{ 'Ətraflı'|_ }}
+                                                <i class="fas fa-angle-double-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="alert alert-info">
+                                {{ 'Heç bir xəbər tapılmadı.'|_ }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    {% if lastPage > 1 %}
+                        <div class="row">
+                            <div class="col-md-12 pagi-area text-center">
+                                <nav aria-label="navigation">
+                                    <ul class="pagination">
+                                        {% if page > 1 %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="{{ 'news'|page({ page: page - 1 }) }}">
+                                                    «
+                                                </a>
+                                            </li>
+                                        {% endif %}
+
+                                        {% for i in 1..lastPage %}
+                                            <li class="page-item {{ page == i ? 'active' : '' }}">
+                                                <a class="page-link" href="{{ 'news'|page({ page: i }) }}">
+                                                    {{ i }}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+
+                                        {% if page < lastPage %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="{{ 'news'|page({ page: page + 1 }) }}">
+                                                     »
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Blog -->

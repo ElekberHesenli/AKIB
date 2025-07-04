@@ -1,0 +1,77 @@
+##
+description = "Default layout"
+
+
+[localePicker]
+==
+
+{% set imgUrls = {
+    favicon: 'storage/app/media/favicon.png',
+} %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- ========== Meta Tags ========== -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Buscom - Multipurpose Business and Corporate Template">
+
+        <!-- ========== Favicon Icon ========== -->
+        <link rel="shortcut icon" href="{{ imgUrls.favicon }}" type="image/x-icon">
+
+        <!-- ========== Start Stylesheet ========== -->
+        <link href="{{ 'assets/css/bootstrap.min.css' | theme }}" rel="stylesheet" />
+        <link href="{{ 'assets/css/font-awesome.min.css' | theme }}" rel="stylesheet" />
+        <link href="{{ 'assets/css/themify-icons.css' | theme }}" rel="stylesheet" />
+        <link href="{{ 'assets/css/elegant-icons.css' | theme }}" rel="stylesheet" />
+        <link href="{{ 'assets/css/flaticon-set.css' | theme }}" rel="stylesheet" />
+        <link href="{{ 'assets/css/magnific-popup.css' | theme }}" rel="stylesheet" />
+        <link href="{{ 'assets/css/owl.carousel.min.css' | theme }}" rel="stylesheet" />
+        <link href="{{ 'assets/css/owl.theme.default.min.css' | theme }}" rel="stylesheet" />
+        <link href="{{ 'assets/css/animate.css' | theme }}" rel="stylesheet" />
+        <link href="{{ 'assets/css/bootsnav.css' | theme }}" rel="stylesheet" />
+        <link href="{{ 'assets/css/style.css' | theme }}" rel="stylesheet" />
+        <link href="{{ 'assets/css/responsive.css' | theme }}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
+        <link href="{{ '/plugins/responsiv/uploader/assets/css/uploader.css' | app }}" rel="stylesheet">
+        <!-- ========== End Stylesheet ========== -->
+
+        <!-- ========== Google Fonts ========== -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap" rel="stylesheet">
+
+        <title>{{ this.page.title }}</title>
+    </head>
+    <body>
+
+        {% partial 'site/header' %}
+
+        {% page %}
+
+        {% partial 'site/footer' %}
+
+        <!-- ========== Scripts  ========== -->
+        <script src="{{ 'assets/js/jquery-1.12.4.min.js' | theme }}"></script>
+        {% framework extras %}
+        <script src="{{ '/plugins/responsiv/uploader/assets/js/uploader.js' | app }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+        <script src="{{ 'assets/js/bootstrap.min.js' | theme }}"></script>
+        <script src="{{ 'assets/js/equal-height.min.js' | theme }}"></script>
+        <script src="{{ 'assets/js/jquery.appear.js' | theme }}"></script>
+        <script src="{{ 'assets/js/jquery.easing.min.js' | theme }}"></script>
+        <script src="{{ 'assets/js/jquery.magnific-popup.min.js' | theme }}"></script>
+        <script src="{{ 'assets/js/modernizr.custom.13711.js' | theme }}"></script>
+        <script src="{{ 'assets/js/owl.carousel.min.js' | theme }}"></script>
+        <script src="{{ 'assets/js/wow.min.js' | theme }}"></script>
+        <script src="{{ 'assets/js/progress-bar.min.js' | theme }}"></script>
+        <script src="{{ 'assets/js/isotope.pkgd.min.js' | theme }}"></script>
+        <script src="{{ 'assets/js/imagesloaded.pkgd.min.js' | theme }}"></script>
+        <script src="{{ 'assets/js/count-to.js' | theme }}"></script>
+        <script src="{{ 'assets/js/YTPlayer.min.js' | theme }}"></script>
+        <script src="{{ 'assets/js/circle-progress.js' | theme }}"></script>
+        <script src="{{ 'assets/js/bootsnav.js' | theme }}"></script>
+        <script src="{{ 'assets/js/main.js' | theme }}"></script>
+    </body>
+</html>

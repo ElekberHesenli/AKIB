@@ -1,0 +1,38 @@
+uuid: 52f997ea-af1f-44cb-8e93-748b1990d70d
+handle: slider.slide
+type: entry
+name: Slide
+drafts: true 
+
+primaryNavigation:
+    label: Slider
+    icon: octo-icon-file
+    iconSvg: modules/tailor/assets/images/slider-icon.svg
+    order: 100
+
+navigation:
+    label: Slides
+    icon: icon-picture
+    order: 10
+
+fields:
+    title:
+        label: Title
+        type: text
+        span: full
+
+    description:
+        label: Description
+        type: textarea
+        span: full
+
+    photo:
+        label: Background Image
+        type: mediafinder
+        mode: image
+        span: full
+
+    button_link:
+        label: Button Link
+        type: text
+        span: full

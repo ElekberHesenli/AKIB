@@ -1,0 +1,87 @@
+url = "/register"
+title = "Üzv Ol"
+layout = "default"
+
+[contactForm]
+recipientEmail = "elekberhsnli@gmail.com"
+recipient_name = "Ələkbər"
+
+[uploader]
+attribute = "cv_file"
+uploadPath = "uploads/cv"
+==
+
+{% set imgUrls = {
+    banner: 'storage/app/media/2440x1578.png',
+} %}
+
+<!-- Start Page Title -->
+<div class="page-title-area shadow dark bg-fixed text-center text-light" style="background-image: url('{{ imgUrls.banner }}');">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1>{{ 'Üzv Ol'|_ }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<!-- Start Register Form -->
+<div class="login-area default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form 
+                    data-request="contactForm::onMailSent"
+                    data-request-files 
+                    id="register-form" 
+                    class="white-popup-block"
+                    enctype="multipart/form-data"
+                    >
+                    <div data-request-flash></div>
+                    <div class="login-custom">
+                        <h4><i class="ti-pencil"></i>{{ 'İndİ Üzv Ol'|_ }}</h4>
+
+                        <div class="form-group">
+                            <input class="form-control" name="name" placeholder="Ad*" type="text" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" name="surname" placeholder="Soyad*" type="text" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" name="phone" placeholder="Telefon*" type="tel" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" name="fin_code" placeholder="Fin Kod*" type="text" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" name="email" placeholder="E-Poçt*" type="email" required>
+                        </div>
+
+                        <!-- CV Yüklə input -->
+                        <div class="form-group">
+                            <label for="cv_file">{{ 'CV Yüklə *'|_ }}</label>
+                            <input 
+                                type="file" 
+                                id="cv_file" 
+                                name="cv_file" 
+                                data-control="fileupload" 
+                                required
+                            >
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">{{ 'Üzv Ol'|_ }}</button>
+
+                        <div data-attach-loading></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Register Form -->

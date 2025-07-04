@@ -1,0 +1,16 @@
+title = "Page Not Found (404)"
+url = "/404"
+layout = "default"
+
+[resources]
+less[] = "pages/404.less"
+==
+{% put meta %}
+    <meta name="turbo-visit-control" content="error">
+{% endput %}
+<div class="container page-404">
+    <div class="banner-404">
+        <h1>{{ 'Səhifə Tapılmadı :('|_ }}</h1>
+        <p>{{ 'Üzr istəyirik, lakin sorğu etdiyiniz səhifəni tapmaq mümkün deyil.'|_ }}</p>
+    </div>
+</div>

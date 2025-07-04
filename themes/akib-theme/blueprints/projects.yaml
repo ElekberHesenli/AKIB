@@ -1,0 +1,58 @@
+uuid: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+handle: blog.project
+type: entry
+name: Project
+drafts: true
+
+customMessages:
+  buttonCreate: New Project
+
+primaryNavigation:
+  label: Projects
+  icon: octo-icon-briefcase
+  iconSvg: modules/tailor/assets/images/projects-icon.svg
+  order: 90
+
+navigation:
+  label: Projects
+  icon: octo-icon-image
+  order: 100
+
+groups:
+  general:
+    name: General
+    fields:
+      title:
+        tab: Details
+        label: Title
+        type: text
+        span: full
+
+      slug:
+        tab: Details
+        label: Slug
+        type: slug
+        span: full
+        maxLength: 255
+        required: true
+        unique: true
+        source: title
+
+      description:
+        tab: Details
+        label: Description
+        type: textarea
+        span: full
+
+      featured_image:
+        tab: Details
+        label: Icon Şəkli
+        type: fileupload
+        mode: image
+        imageWidth: 100
+        imageHeight: 100
+        comment: "PNG və ya SVG formatında icon yüklə"
+        span: full
+        accept:
+          - image/png
+          - image/svg+xml
