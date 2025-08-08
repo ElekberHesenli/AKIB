@@ -31,6 +31,7 @@ class Plugin extends PluginBase{
     {
         return [
             'LaminSanneh\FlexiContact\Components\ContactForm' => 'contactForm',
+            'LaminSanneh\FlexiContact\Components\ContactPageForm' => 'contactPageForm',
         ];
     }
 

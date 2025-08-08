@@ -1,20 +1,104 @@
-title = "Xəbər Detal"
-url = "/news-detail/:postSlug"
+url = "/news-detail/:slug"
 layout = "default"
+title = "Xəbərlər Detal"
 
-[tailorEntry detailPost]
-handle = "blog.post"
-recordSlug = "{{ :postSlug }}"
+[section news]
+handle = "news"
+identifier = "slug"
 ==
+{% set record = news.record %}
 
-{% set post = detailPost.getRecord() %}
+{% if news %}
+    {% set imgUrls = {
+        banner: 'storage/app/media/2440x1578.png',
+    } %}
 
-Slug: {{ this.param.postSlug }} <br>
-Component Found: {{ post ? 'yes' : 'no' }} <br>
-
-{% if post %}
-  <h1>{{ post.title }}</h1>
-  <p>{{ post.content }}</p>
+<!-- Start Blog Details -->
+    <div class="blog-area full-blog blog-standard full-blog default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="blog-items">
+                    <div class="blog-content col-md-10 col-md-offset-1">
+                        <div class="blog-item-box">
+                            <div class="single-item">
+                                <div class="item">
+                                    {% if news.record.image %}
+                                        <div class="thumb">
+                                            <img src="{{ news.record.image|media }}" alt="{{ news.record.title }}" />
+                                        </div>
+                                    {% endif %}
+                                    <div class="info">
+                                        <div class="tags">
+                                            <p>
+                                                {{ 'Tarix:'|_ }}
+                                                {{ news.record.published_at ? news.record.published_at|date('d.m.Y') : news.record.created_at|date('d.m.Y') }}
+                                            </p>
+                                        </div>
+                                        <h2>{{ news.record.title }}</h2>
+                                        
+                                        {% if news.record.excerpt %}
+                                            <div class="excerpt">
+                                                <p><strong>{{ news.record.content }}</strong></p>
+                                            </div>
+                                        {% endif %}
+                                        
+                                        {% if news.record.content %}
+                                            <div class="content">
+                                                {{ news.record.content|raw }}
+                                            </div>
+                                        {% endif %}
+                                        
+                                        <div class="back-link">
+                                            <a class="btn btn-theme border btn-sm" href="{{ 'news'|page }}">
+                                                <i class="fas fa-angle-double-left"></i>
+                                                {{ 'Xəbərlərə qayıt'|_ }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Blog Details -->
 {% else %}
-  <p>{{ 'Heç bir xəbər tapılmadı.'|_ }}</p>
+    <!-- Start Page Title -->
+    <div
+        class="page-title-area shadow dark bg-fixed text-center text-light"
+        style="background-image: url('{{ imgUrls.banner }}');"
+    >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h1>{{ 'Xəbər tapılmadı'|_ }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Title -->
+
+    <!-- Start Blog Details -->
+    <div class="blog-area full-blog blog-standard full-blog default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="blog-items">
+                    <div class="blog-content col-md-10 col-md-offset-1">
+                        <div class="blog-item-box">
+                            <div class="alert alert-warning">
+                                <h4>{{ 'Xəbər tapılmadı'|_ }}</h4>
+                                <p>{{ 'Axtardığınız xəbər mövcud deyil və ya silinib.'|_ }}</p>
+                                <a class="btn btn-theme border btn-sm" href="{{ 'news'|page }}">
+                                    {{ 'Xəbərlərə qayıt'|_ }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Blog Details -->
 {% endif %}

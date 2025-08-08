@@ -1,9 +1,20 @@
+[collection generalSettings]
+handle = "general"
+==
+{% set general = generalSettings.first() %}
+{% set icons = {
+    facebook: 'fab fa-facebook-f',
+    instagram: 'fab fa-instagram',
+    twitter: 'fab fa-twitter',
+    linkedin: 'fab fa-linkedin-in',
+    youtube: 'fab fa-youtube',
+    tiktok: 'fab fa-tiktok'
+} %}
 <!-- Nav -->
 {% placeholder headerBefore %}
 {% set imgUrls = {
-logo: 'storage/app/media/logo.png',
+    logo: 'storage/app/media/akib-logo.png'| app,
 } %}
-
 <!-- Start Header Top 
     ============================================= -->
 <div class="top-bar-area">
@@ -22,7 +33,7 @@ logo: 'storage/app/media/logo.png',
                                 <i class="flaticon-email"></i>
                             </div>
                             <div class="info">
-                                <span>Email</span> Info@gmail.com
+                                <span>E-Poçt</span>{{ general.email }}
                             </div>
                         </li>
                         <li>
@@ -30,7 +41,7 @@ logo: 'storage/app/media/logo.png',
                                 <i class="flaticon-call-center"></i>
                             </div>
                             <div class="info">
-                                <span>{{ 'Telefon'|_ }}</span> +123 456 7890
+                                <span>{{ 'Telefon'|_ }}</span> {{ general.phone }}
                             </div>
                         </li>
                     </ul>
@@ -81,8 +92,8 @@ logo: 'storage/app/media/logo.png',
                 <ul class="nav navbar-nav navbar-left" data-in="#" data-out="#">
                     <li class="{{ this.page.baseFileName == 'home' ? 'active' : '' }}">
                         <a href="{{ 'home'|page }}"
-                            class="dropdown-toggle {{ this.page.baseFileName == 'home' ? 'active' : '' }}"
-                            data-toggle="dropdown">{{ 'Ana Səhifə'|_ }}</a>
+                            class=" {{ this.page.baseFileName == 'home' ? 'active' : '' }}"
+                            >{{ 'Ana Səhifə'|_ }}</a>
                     </li>
                     <li class="{{ this.page.baseFileName == 'aboutus' ? 'active' : '' }}">
                         <a href="{{ 'aboutus'|page }}"
@@ -90,13 +101,13 @@ logo: 'storage/app/media/logo.png',
                     </li>
                     <li class="{{ this.page.baseFileName == 'projects' ? 'active' : '' }}">
                         <a href="{{ 'projects'|page }}"
-                            class="dropdown-toggle {{ this.page.baseFileName == 'projects' ? 'active' : '' }}"
-                            data-toggle="dropdown">{{ 'Layihələr'|_ }}</a>
+                            class=" {{ this.page.baseFileName == 'projects' ? 'active' : '' }}"
+                            >LAYİHƏLƏR</a>
                     </li>
                     <li class="{{ this.page.baseFileName == 'news' ? 'active' : '' }}">
                         <a href="{{ 'news'|page }}"
-                            class="dropdown-toggle {{ this.page.baseFileName == 'news' ? 'active' : '' }}"
-                            data-toggle="dropdown">{{ 'Xəbərlər və Elanlar'|_ }}</a>
+                            class=" {{ this.page.baseFileName == 'news' ? 'active' : '' }}"
+                            >{{ 'Xəbərlər və Elanlar'|_ }}</a>
                     </li>
                     <li class="{{ this.page.baseFileName == 'register' ? 'active' : '' }}">
                         <a href="{{ 'register'|page }}"
@@ -107,14 +118,18 @@ logo: 'storage/app/media/logo.png',
                             class="{{ this.page.baseFileName == 'contact' ? 'active' : '' }}">{{ 'Əlaqə'|_ }}</a>
                     </li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <form id="language-switcher">
+                            <select onchange="changeLanguage(this.value)" style="padding: 6px 12px; font-size: 16px; border: 1px solid #0ebdce; border-radius: 4px; margin-top: 20px;">
+                                <option value="/az" {{ this.locale=='az' ? 'selected' : '' }}>AZ</option>
+                                <option value="/en" {{ this.locale=='en' ? 'selected' : '' }}>EN</option>
+                            </select>
+                        </form>
+                    </li>
+                </ul>
             </div><!-- /.navbar-collapse -->
         </div>
-        <form id="language-switcher">
-            <select onchange="changeLanguage(this.value)">
-                <option value="/az" {{ this.locale=='az' ? 'selected' : '' }}>AZ</option>
-                <option value="/en" {{ this.locale=='en' ? 'selected' : '' }}>EN</option>
-            </select>
-        </form>
         <!-- Start Side Menu -->
         <div class="side">
             <a href="#" class="close-side"><i class="fas fa-times"></i></a>
@@ -131,17 +146,17 @@ logo: 'storage/app/media/logo.png',
                     <ul>
                         <li>
                             <div class="content">
-                                <p>{{ 'Məkan'|_ }}</p><strong>California, TX 70240</strong>
+                                <p>{{ 'Məkan'|_ }}</p><strong>{{ general.adress }}</strong>
                             </div>
                         </li>
                         <li>
                             <div class="content">
-                                <p>{{ 'EMAIL'|_ }}</p><strong>support@validtheme.com</strong>
+                                <p>{{ 'EMAIL'|_ }}</p><strong>{{ general.email }}</strong>
                             </div>
                         </li>
                         <li>
                             <div class="content">
-                                <p>{{ 'TEL'|_ }}</p><strong>+44-20-7328-4499</strong>
+                                <p>{{ 'TEL'|_ }}</p><strong>{{ general.phone }}</strong>
                             </div>
                         </li>
                     </ul>
@@ -160,13 +175,21 @@ logo: 'storage/app/media/logo.png',
                     </div>
                 </form>
             </div>
-            <div class="widget social">
-                <ul class="link">
-                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                    <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                </ul>
+		<div class="widget social">
+    		   {% if general.social_links is not empty %}
+    		   <ul class="link">
+        	 	{% for item in general.social_links %}
+            		    {% if item.url %}
+            		    <li>
+                		<a href="{{ item.url }}" target="_blank" aria-label="{{ item.platform|capitalize }}">
+                    		   <i class="{{ icons[item.platform] }}"></i>
+                		</a>
+            		    </li>
+            		    {% endif %}
+        		{% endfor %}
+    		   </ul>
+    		   {% endif %}
+		</div>
             </div>
         </div>
         <!-- End Side Menu -->
@@ -178,17 +201,28 @@ logo: 'storage/app/media/logo.png',
 <!-- End Header -->
 
 <script>
-    function changeLanguage(locale) {
-        // Saytın əsas yolu
-        const basePath = '/Akib-October-Cms';
-        
-        // Hazırkı yol, əvvəlki dili təmizləyirik
-        const cleanPath = window.location.pathname
-            .replace(basePath, '')         // baza yolunu çıxarır
-            .replace(/^\/(az|en)/, '');    // prefixi təmizləyir
+    function changeLanguage(langPrefix) {
+        var currentPath = window.location.pathname;
 
-        // Yeni dilə yönləndiririk
-        window.location.href = `${basePath}${locale}${cleanPath}`;
+        // Akib-October-Cms kök qovluğunu çıxarma
+        var basePath = '/Akib-October-Cms';
+
+        // Əgər path basePath ilə başlamırsa, heç nə etmə
+        if (!currentPath.startsWith(basePath)) return;
+
+        // Kök yolu çıxart (nəzarət üçün)
+        var innerPath = currentPath.slice(basePath.length);
+
+        // Əvvəldə varsa /az və ya /en — çıxar
+        innerPath = innerPath.replace(/^\/(az|en)(\/|$)/, '/');
+
+        // Lang prefix əlavə et
+        var newPath = (langPrefix === '/az') 
+            ? basePath + innerPath 
+            : basePath + langPrefix + innerPath;
+
+        // Yönləndir
+        window.location.href = newPath;
     }
 </script>
 

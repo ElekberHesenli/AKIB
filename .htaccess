@@ -7,37 +7,23 @@
     RewriteEngine On
 
     ##
-    ## You may need to uncomment the following line for some hosting environments,
-    ## if you have installed to a subdirectory, enter the name here also.
-    ##
-    RewriteBase /Akib-October-Cms/
+    RewriteBase /Akib-October-Cms
 
-    ##
-    ## Uncomment following lines to force HTTPS.
-    ##
-    # RewriteCond %{HTTPS} off
-    # RewriteRule (.*) https://%{SERVER_NAME}/$1 [L,R=301]
+    RewriteCond %{HTTPS} off
+    RewriteRule (.*) https://%{SERVER_NAME}/$1 [L,R=301]
 
-    ##
-    ## Uncomment to redirect trailing slashes in URLs.
-    ##
+    ## Trailing slashes
     # RewriteCond %{REQUEST_FILENAME} !-d
     # RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-    ##
-    ## Uncomment to redirect /index.php/path to /path
-    ##
+    # index.php redirect
     # RewriteRule ^index\.php/(.*)$ /$1 [L,R=301]
 
-    ##
-    ## Handle Authorization Header
-    ##
+    ## Authorization header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    ##
     ## Blocked folders
-    ##
     RewriteRule ^bootstrap/.* index.php [L,NC]
     RewriteRule ^config/.* index.php [L,NC]
     RewriteRule ^vendor/.* index.php [L,NC]
@@ -47,9 +33,7 @@
     RewriteRule ^storage/temp/protected/.* index.php [L,NC]
     RewriteRule ^storage/app/uploads/protected/.* index.php [L,NC]
 
-    ##
     ## Allowed folders
-    ##
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteCond %{REQUEST_FILENAME} !/.well-known/*
     RewriteCond %{REQUEST_FILENAME} !/app/(assets|resources)/.*
@@ -62,17 +46,14 @@
     RewriteCond %{REQUEST_FILENAME} !/modules/.*/(assets|resources)/.*
     RewriteRule !^index.php index.php [L,NC]
 
-    ##
-    ## Block all PHP files, except index
-    ##
+    ## Block all PHP files except index.php
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteCond %{REQUEST_FILENAME} \.php$
     RewriteRule !^index.php index.php [L,NC]
 
-    ##
-    ## Standard routes
-    ##
+    ## Standard route fallback
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 
 </IfModule>
+

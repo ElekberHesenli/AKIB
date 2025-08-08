@@ -1,96 +1,106 @@
+[collection generalSettings]
+handle = "general"
+==
+{% set general = generalSettings.first() %}
+{% set icons = {
+    facebook: 'fab fa-facebook-f',
+    instagram: 'fab fa-instagram',
+    twitter: 'fab fa-twitter',
+    linkedin: 'fab fa-linkedin-in',
+    youtube: 'fab fa-youtube',
+    tiktok: 'fa-brands fa-tiktok'
+} %}
+
 <!-- Star Footer
     ============================================= -->
-    <footer class="bg-light">
+<footer class="bg-light">
+    <div class="container">
+        <div class="footer-content default-padding">
+            <div class="row">
+
+                <div class="equal-height col-md-4 col-sm-6 item">
+                    <div class="f-item about">
+                        <h4 class="widget-title">{{ 'Haqqımızda'|_ }}</h4>
+                        <p>
+                            {{ general.extra_content|striptags }}
+                        </p>
+
+                        {% if general.social_links is not empty %}
+                        <ul>
+                            {% for item in general.social_links %}
+                            {% if item.url %}
+                            <li>
+                                <a href="{{ item.url }}" target="_blank" aria-label="{{ item.platform|capitalize }}">
+                                    <i class="{{ icons[item.platform] }}"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="equal-height col-md-2 col-sm-6 item">
+                    <div class="f-item link">
+                        <h4 class="widget-title">{{ 'Səhifələr'|_ }}</h4>
+                        <ul>
+                            <li>
+                                <a href="{{ 'home'|page }}">{{ 'Ana Səhifə'|_ }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ 'aboutus'|page }}">{{ 'Haqqımızda'|_ }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ 'projects'|page }}">{{ 'Layihələr'|_ }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ 'news'|page }}">{{ 'Xəbərlər və Elanlar'|_ }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ 'register'|page }}">{{ 'Üzv Ol'|_ }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ 'contact'|page }}">{{ 'Əlaqə'|_ }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="equal-height col-md-4 col-sm-6 item">
+                    <div class="f-item contact address">
+                        <h4 class="widget-title">{{ 'Bizimlə Əlaqə'|_ }}</h4>
+                        <ul>
+                            <li>
+                                <div class="icon"><i class="flaticon-location"></i></div>
+                                <span>{{ general.adress }}</span>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <i class="flaticon-call-center"></i>
+                                </div>
+                                <span>{{ general.phone }}</span>
+                            </li>
+                            <li>
+                                <div class="icon"><i class="flaticon-email"></i> </div>
+                                <span>{{ general.email }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Footer Bottom -->
+    <div class="footer-bottom text-light">
         <div class="container">
-            <div class="footer-content default-padding">
-                <div class="row">
-
-                    <div class="equal-height col-md-4 col-sm-6 item">
-                        <div class="f-item about">
-                            <h4 class="widget-title">{{ 'Haqqımızda'|_ }}</h4>
-                            <p>
-                                {{ 'Tələb şərəfli xırda-xırda yemək zövq adam relati Təminat hələ yataq təkmilləşdirilməsi idi mebel adam Etibarsız məmnun xidmətlər və tətbiqi yüksək dərəcədə tobiscotuition sonu.'|_ }}
-                            </p>
-                            <p>
-                                {{ 'Tələb olunan əməkdar xırda-xırda yemək zövq adam relati Əminlik hələ yataq təkmilləşdirilməsi idi mebel adam Etibarsız məmnun xidmətlər və tətbiqi yüksək dərəcəli tobiscotuition sonu.'|_ }}
-                            </p>
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-youtube"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="equal-height col-md-2 col-sm-6 item">
-                        <div class="f-item link">
-                            <h4 class="widget-title">{{ 'Səhifələr'|_ }}</h4>
-                            <ul>
-                                <li>
-                                    <a href="{{ 'home'|page }}">{{ 'Ana Səhifə'|_ }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ 'aboutus'|page }}">{{ 'Haqqımızda'|_ }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ 'project'|page }}">{{ 'Layihələr'|_ }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ 'news'|page }}">{{ 'Xəbərlər və Elanlar'|_ }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ 'register'|page }}">{{ 'Üzv Ol'|_ }}</a>
-                                </li>
-                                <li>
-                                    <a href="{{ 'contact'|page }}">{{ 'Əlaqə'|_ }}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="equal-height col-md-4 col-sm-6 item">
-                        <div class="f-item contact address">
-                            <h4 class="widget-title">{{ 'Bizimlə Əlaqə'|_ }}</h4>
-                            <ul>
-                                <li>
-                                    <div class="icon"><i class="flaticon-location"></i></div>
-                                    <span>22 Baker Street, Koenigstrasse 65, Bad Sülze, Mecklenburg-Vorpommern, Philippines</span>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <i class="flaticon-call-center"></i>
-                                    </div>
-                                    <span>+123 456 7890 <br>+456 123 4455  </span>
-                                </li>
-                                <li>
-                                    <div class="icon"><i class="flaticon-email"></i> </div>
-                                    <span>support@buscom.com</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>&copy; 2000-{{ "now"|date("Y") }} {{ '"Azərbaycan Könüllülər" İctimai Birliyi | Bütün hüquqlar qorunur!'|_ }}</p>
                 </div>
             </div>
         </div>
-        <!-- Footer Bottom -->
-        <div class="footer-bottom text-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <p>Copyright &copy; 2025 Akib {{ 'Bütün hüquqlar qorunur.'|_ }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Bottom -->
-    </footer>
+    </div>
+    <!-- End Footer Bottom -->
+</footer>

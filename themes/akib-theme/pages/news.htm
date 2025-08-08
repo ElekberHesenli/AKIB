@@ -1,16 +1,14 @@
-title = "Xəbərlər"
-url = "/news/:page?"
+url = "/news/page/:page?"
 layout = "default"
+title = "Xəbərlər"
 
 [collection posts]
-handle = "blog.post"
+handle = "news"
 pageNumber = "{{ :page }}"
-perPage = 5
 sortColumn = "created_at"
 sortDirection = "desc"
-conditions = "is_enabled = true"
 ==
-{% set page = this.param.page %}
+{% set page = this.param.page %} 
 {% if not page or page matches '/\D/' %}
     {% set page = 1 %}
 {% endif %}
@@ -26,13 +24,13 @@ conditions = "is_enabled = true"
 {% set allRecords = posts.get()|sort((a, b) => b.created_at <=> a.created_at) %}
 {% set records = allRecords|slice((page - 1) * perPage, perPage) %}
 {% set imgUrls = {
-    banner: 'storage/app/media/2440x1578.png',
+    banner: 'storage/app/media/2440x1578.png' | app,
 } %}
 <!-- OG Meta Tags -->
 <meta property="og:title" content="Xəbərlər - Akib" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ this.url }}" />
-<meta property="og:image" content="{{ posts|first.featured_image|media }}" />
+<meta property="og:image" content="{{ posts|first.image|media }}" />
 
 <!-- Start Page Title -->
 <div
@@ -60,10 +58,10 @@ conditions = "is_enabled = true"
                             {% for post in records %}
                                 <div class="single-item">
                                     <div class="item">
-                                        {% if post.featured_image %}
+                                        {% if post.image %}
                                             <div class="thumb">
-                                                <a href="{{ 'news-detail'|page({ postSlug: post.slug }) }}">
-                                                    <img src="{{ post.featured_image|media }}" alt="{{ post.title }}" />
+                                                <a href="{{ 'news-detail'|page({ slug: post.slug }) }}">
+                                                    <img src="{{ post.image|media }}" alt="{{ post.title }}" />
                                                 </a>
                                             </div>
                                         {% endif %}
@@ -75,7 +73,7 @@ conditions = "is_enabled = true"
                                                 </p>
                                             </div>
                                             <h4>
-                                                <a href="{{ 'news-detail'|page({ postSlug: post.slug }) }}">
+                                                <a href="{{ 'news-detail'|page({ slug: post.slug }) }}">
                                                     {{ post.title }}
                                                 </a>
                                             </h4>
@@ -86,7 +84,7 @@ conditions = "is_enabled = true"
                                                     {{ post.content|striptags|slice(0, 200) }}...
                                                 {% endif %}
                                             </p>
-                                            <a class="btn btn-theme border btn-sm" href="{{ 'news-detail'|page({ postSlug: post.slug }) }}">
+                                            <a class="btn btn-theme border btn-sm" href="{{ 'news-detail'|page({ slug: post.slug }) }}">
                                                 {{ 'Ətraflı'|_ }}
                                                 <i class="fas fa-angle-double-right"></i>
                                             </a>

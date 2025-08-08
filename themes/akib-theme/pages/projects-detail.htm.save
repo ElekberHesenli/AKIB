@@ -1,4 +1,4 @@
-url = "/projects-detail/:slug"
+-url = "/projects-detail/:slug"
 layout = "default"
 title = "Layihələr Detal"
 

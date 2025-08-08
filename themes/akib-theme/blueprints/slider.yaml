@@ -28,8 +28,9 @@ fields:
 
     photo:
         label: Background Image
-        type: mediafinder
+        type: fileupload
         mode: image
+        fileTypes: jpg,jpeg,png,webp
         span: full
 
     button_link:

@@ -1,27 +1,26 @@
-uuid: a1b2c3d4-e5f6-7890-abcd-ef1234567890
-handle: projects
+uuid: bfc181fb-85a8-4c35-a7e2-eb6542f07da3
+handle: news
 type: stream
-name: Projects
+name: News
 
 primaryNavigation:
-    label: Projects
-    icon: icon-briefcase
-    order: 90
+    label: News
+    icon: icon-bookmark
+    order: 170
 
 fields:
+
     title:
         label: Title
         type: text
-        span: full
 
-    slug:
+    slug: # <--- ADD THIS FIELD
         label: Slug
         type: text
         preset:
             field: title
             type: slug
         required: true
-        unique: true
         span: full
 
     content:
@@ -33,4 +32,9 @@ fields:
         label: Image
         type: mediafinder
         mode: image
+        span: right
+
+    date:
+        label: Date
+        type: datepicker
         span: left

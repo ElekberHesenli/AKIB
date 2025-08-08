@@ -1,0 +1,45 @@
+uuid: 36e4fcb4-1831-48a6-8dcf-b61c02231c55
+handle: whyus
+name: Why Us
+type: single
+
+primaryNavigation:
+    label: Why Us
+    icon: icon-star
+    order: 91
+
+navigation:
+    label: Settings
+    icon: icon-cogs
+    order: 11
+
+fields:
+    sections:
+        label: Sections
+        type: repeater
+        span: full
+        prompt: Add section
+        form:
+            fields:
+                title:
+                    label: Title
+                    type: text
+                    span: full
+
+                description:
+                    label: Description
+                    type: textarea
+                    size: small
+                    span: full
+
+                icon:
+                    label: Icon
+                    type: dropdown
+                    options:
+                        icon-heart: Heart
+                        icon-star: Star
+                        icon-rocket: Rocket
+                        icon-users: Team
+                        icon-lightbulb: Idea
+                        icon-thumbs-up: Like
+                    span: full

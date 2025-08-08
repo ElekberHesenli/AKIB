@@ -1,0 +1,121 @@
+uuid: 2d25dc03-1166-49db-a9e8-192496a70cbf
+handle: general
+name: General Settings
+type: entry
+
+primaryNavigation:
+    label: General
+    icon: octo-icon-cog
+    order: 90
+
+navigation:
+    label: Settings
+    icon: icon-cogs
+    order: 10
+
+fields:
+    phone:
+        label: Phone
+        type: text
+        span: full
+
+    email:
+        label: Email
+        type: text
+        span: full
+
+    adress:
+        label: Adress
+        type: text
+        span: full
+
+    extra_content:
+        label: Additional Content
+        type: richeditor
+        span: full
+
+    social_links:
+        label: Social Links
+        type: repeater
+        span: full
+        prompt: Add Social Link
+        form:
+            fields:
+                platform:
+                    label: Platform
+                    type: dropdown
+                    span: auto
+                    options:
+                        facebook: Facebook
+                        instagram: Instagram
+                        twitter: Twitter
+                        linkedin: LinkedIn
+                        youtube: YouTube
+                        tiktok: TikTok
+
+                url:
+                    label: Link (URL)
+                    type: text
+                    span: full
+
+    about_title:
+        label: About Title
+        type: text
+        span: full
+        tab: About
+
+    about_content:
+        label: About Page Content
+        type: richeditor
+        size: large
+        span: full
+        tab: About
+
+    team_members:
+        label: Team Members
+        type: repeater
+        prompt: Add Team Member
+        tab: About
+        form:
+            fields:
+                name:
+                    label: Name
+                    type: text
+                    span: full
+
+                position:
+                    label: Position
+                    type: text
+                    span: full
+
+                photo:
+                    label: Photo
+                    type: mediafinder
+                    mode: image
+                    span: full
+    whyus_sections:
+        label: Why Us Sections
+        type: repeater
+        prompt: Add Why Us Item
+        tab: whyus
+        form:
+            fields:
+                icon:
+                    label: Icon
+                    type: dropdown
+                    span: auto
+                    options:
+                        facebook: Facebook
+                        instagram: Instagram
+                        twitter: Twitter
+                        linkedin: LinkedIn
+                        youtube: YouTube
+                        tiktok: TikTok
+                title:
+                    label: Title
+                    type: text
+                    span: full
+                description:
+                    label: Description
+                    type: textarea
+                    span: full

@@ -1,12 +1,10 @@
-##
 description = "Default layout"
 
-
 [localePicker]
+forceUrl = 0
 ==
-
 {% set imgUrls = {
-    favicon: 'storage/app/media/favicon.png',
+    favicon: 'storage/app/media/akib-logo.png' | app,
 } %}
 
 <!DOCTYPE html>
@@ -32,8 +30,8 @@ description = "Default layout"
         <link href="{{ 'assets/css/owl.theme.default.min.css' | theme }}" rel="stylesheet" />
         <link href="{{ 'assets/css/animate.css' | theme }}" rel="stylesheet" />
         <link href="{{ 'assets/css/bootsnav.css' | theme }}" rel="stylesheet" />
-        <link href="{{ 'assets/css/style.css' | theme }}" rel="stylesheet" />
         <link href="{{ 'assets/css/responsive.css' | theme }}" rel="stylesheet" />
+        <link href="{{ 'assets/css/style.css' | theme }}" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
         <link href="{{ '/plugins/responsiv/uploader/assets/css/uploader.css' | app }}" rel="stylesheet">
         <!-- ========== End Stylesheet ========== -->
@@ -42,7 +40,7 @@ description = "Default layout"
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap" rel="stylesheet">
 
-        <title>{{ this.page.title }}</title>
+        <title>{{ this.page.title }} | "Azərbaycan Könüllülər" İctimai Birliyi</title>
     </head>
     <body>
 
@@ -73,5 +71,22 @@ description = "Default layout"
         <script src="{{ 'assets/js/circle-progress.js' | theme }}"></script>
         <script src="{{ 'assets/js/bootsnav.js' | theme }}"></script>
         <script src="{{ 'assets/js/main.js' | theme }}"></script>
+
+        {% framework %}
+        {% framework extras %}
+
+        <script>
+            $(document).on('ajaxSuccess', function(event, context, data) {
+                if (data.resetForm2) {
+                    $('#register-form')[0].reset(); 
+                    $('#cv_filename').text('No file chosen');
+                }
+            });
+            $(document).on('ajaxSuccess', function(event, context, data) {
+              if (data.resetForm) {
+                   $('#contact-page-form')[0].reset(); // bütün input və textarea-ları sıfırla
+              }
+            });
+        </script>
     </body>
 </html>
